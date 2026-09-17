@@ -3,6 +3,8 @@ backend:
   name: github
   repo: LoicBabolat/test-astro
   branch: cms
+  skip_ci: true
+  preview_context: cloudflare
 
 media_folder: /public/media
 public_folder: /media
@@ -11,6 +13,7 @@ collections:
   - name: posts
     label: Posts
     label_singular: Post
+    preview_path: "/posts-test/{{slug}}"
     folder: /src/posts-test
     fields:
       - { label: Title, name: title, widget: string }
