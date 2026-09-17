@@ -1,14 +1,13 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getUniqueTags } from "../../utils/tags";
+
+const allPosts = await getCollection("blog");
+const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 const pageTitle = "Tag Index";
-
-const allPosts = Object.values(
-    import.meta.glob("../posts/*.md", { eager: true }),
-);
-
-const tags = getUniqueTags(allPosts);
 ---
+
+<!-- ... -->
 
 <BaseLayout pageTitle={pageTitle}>
     <div class="tags">
